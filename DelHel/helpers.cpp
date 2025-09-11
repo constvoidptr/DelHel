@@ -9,13 +9,15 @@ std::string FetchLatestVersion()
 
 	HINTERNET init = InternetOpen(agent.str().c_str(), INTERNET_OPEN_TYPE_PRECONFIG, NULL, NULL, 0);
 	if (!init) {
-		throw error{ "Connection failed. Error: " + std::to_string(GetLastError()) };
+		std::string err_msg = "Connection failed. Error: " + std::to_string(GetLastError()) ;
+		throw error{ err_msg };
 	}
 
 	HINTERNET open = InternetOpenUrl(init, PLUGIN_LATEST_VERSION_URL, NULL, 0, INTERNET_FLAG_PRAGMA_NOCACHE | INTERNET_FLAG_RELOAD, 0);
 	if (!open) {
 		InternetCloseHandle(init);
-		throw error{ "Failed to load URL. Error: " + std::to_string(GetLastError()) };
+		std::string err_msg =  "Failed to load URL. Error: " + std::to_string(GetLastError());
+		throw error{ err_msg };
 	}
 
 	char data[256];
