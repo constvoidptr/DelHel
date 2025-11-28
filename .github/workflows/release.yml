@@ -41,7 +41,7 @@ jobs:
 
       - name: Update constants.h
         run: |
-          sed -i 's/^#define PLUGIN_VERSION .*/#define PLUGIN_VERSION "'"\"$VERSION\""'/g' DelHel/constants.h
+          sed -i "s/^#define PLUGIN_VERSION .*/#define PLUGIN_VERSION \"$VERSION\"/" DelHel/constants.h
 
       - name: Update DelHel.rc (UTF-16)
         run: |
@@ -75,7 +75,7 @@ jobs:
           fi
 
           git add .
-          git commit -m "Bump version to $VERSION"
+          git commit -m "Version bump to v$VERSION"
           git tag "v$VERSION"
           git push origin HEAD
           git push origin "v$VERSION"
