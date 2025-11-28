@@ -21,6 +21,9 @@ jobs:
       contents: write
     outputs:
       tag: ${{ steps.tag.outputs.tag }}
+    
+    env:
+      VERSION: ${{ inputs.version }}
 
     steps:
       - name: Checkout
