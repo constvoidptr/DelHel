@@ -21,7 +21,7 @@ jobs:
       contents: write
     outputs:
       tag: ${{ steps.tag.outputs.tag }}
-    
+
     env:
       VERSION: ${{ inputs.version }}
 
@@ -105,4 +105,5 @@ jobs:
         with:
           tag_name: ${{ needs.prepare-release.outputs.tag }}
           name: ${{ needs.prepare-release.outputs.tag }}
+          generate_release_notes: true
           files: "${{env.BUILD_CONFIGURATION}}/DelHel.dll"
